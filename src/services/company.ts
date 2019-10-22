@@ -7,5 +7,4 @@ export class Company {
   longitude: number;
   isActive: boolean;
   opened?: boolean;
-  image:any;
 }

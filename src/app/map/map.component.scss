@@ -2,17 +2,11 @@
   height: 100vh;
   width: 100vh;
 }
-//#marker {
-//  width: 20px;
-//  height: 20px;
-//  //border: 1px solid darkred !important;
-//  border-radius: 10px;
-//  //background-color: black !important;
-//  background-image: url("/src/assets/marker-green.png") !important;
-//  opacity: 0.5;
-//}
-
-
 .popover-content {
-  min-width: 180px;
+//  max-width: 180px;
+  width: 200px;
+  padding: 5px;
+  background-color: silver;
+  font-size: 10px;
+  color: floralwhite;
 }
