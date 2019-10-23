@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit} from '@angular/core';
 import {Company} from '../../services/company';
 import {InfoCompaniesService} from '../../services/InfoCompanies.service';
 
@@ -28,10 +28,13 @@ export class MapComponent implements OnInit {
   public infoComps: Company[] = [];
   public map: Map;
   public layer: TileLayer;
-  // public feature: Feature;
   public popup: Overlay;
+  public zxczxc: any;
 
-  constructor(public httpService: InfoCompaniesService) {
+  constructor(public httpService: InfoCompaniesService,
+              private cdRef: ChangeDetectorRef,
+              private elRef: ElementRef
+  ) {
   }
 
   ngOnInit() {
@@ -53,8 +56,9 @@ export class MapComponent implements OnInit {
         zoom: 2,
       })
     });
+    // create popup
     this.popup = new Overlay({
-      element: document.getElementById('popup')
+      element: document.getElementById('popup'),
     });
 
     this.httpService.getData().subscribe((data: Company[]) => {
@@ -65,24 +69,17 @@ export class MapComponent implements OnInit {
       // create markers for every company
       data.forEach((company: Company, ind: number) => {
         const pos = fromLonLat([company.longitude, company.latitude]);
-        // создать маркер
+        // create markers
         const point = new Point(pos);
 
-        // const name = company.company ? 'comp' : 'company unknow';
-        const name = company.company;
-        // console.log(name);
         const feature = new Feature({
           geometry: point,
           positioning: 'center-center',
           element: document.getElementById('marker'),
           stopEvent: false,
           html: true,
-          content: '<p>name</p>',
-          // content: '<p>The location you clicked was:</p><code>' + hdms + '</code>'
-
-          // content: '<div><p>Name:</p>' + name + '</div>',
-
-          // style: company.isActive ? '' : '',
+          name: company.company,
+          data: company,
         });
 
         // style for company`s icons
@@ -93,7 +90,7 @@ export class MapComponent implements OnInit {
             anchorXUnits: 'fraction',
             anchorYUnits: 'pixels',
             src: company.isActive ? 'assets/marker-green.png' : 'assets/marker.png'
-          })
+          }),
         });
         // добавьте его в источник
         feature.setStyle(iconStyle);
@@ -103,15 +100,26 @@ export class MapComponent implements OnInit {
       });
       this.map.addOverlay(this.popup);
       this.map.on([eventType.CLICK, eventType.DBLCLICK, eventType.LOAD], (ev: MapBrowserPointerEvent) => {
-        const feature1: Feature = this.map.forEachFeatureAtPixel(ev.pixel, (feature2) => {
-          return feature2;
+
+        const clickOn: Feature = this.map.forEachFeatureAtPixel(ev.pixel, (content) => {
+          return content;
         });
-        if (feature1) {
+        if (clickOn) {
+          // console.log('getProperties', clickOn.getProperties().data);
+          const companyInfo: Company = clickOn.getProperties().data;
+          this.zxczxc = `<h2>${companyInfo.company}</h2>
+                         <div>email:${companyInfo.email}</div>
+                         <p id="close">click me</p>`;
           this.popup.setPosition(ev.coordinate);
+          this.cdRef.detectChanges();
+          this.elRef.nativeElement.querySelector('#close').addEventListener('click', () => this.smt(companyInfo));
         }
       });
-
     });
+  }
+
+  public smt(event: any): void {
+    // console.log(event);
   }
 }
 

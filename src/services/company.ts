@@ -1,10 +1,10 @@
 export class Company {
   company: string;
-  email: string;
-  phone: number;
-  address: string;
+  email?: string;
+  phone?: number;
+  address?: string;
   latitude: number;
   longitude: number;
-  isActive: boolean;
+  isActive?: boolean;
   opened?: boolean;
 }
