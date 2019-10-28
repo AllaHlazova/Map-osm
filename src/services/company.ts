@@ -6,5 +6,22 @@ export class Company {
   latitude: number;
   longitude: number;
   isActive?: boolean;
-  opened?: boolean;
+  balance: number;
+  picture?: string;
+  age: number;
+  eyeColor: string;
+  name: string;
+  gender: string;
+  about: string;
+  registered: number;
+  tags: [];
+  friends: [
+    {
+    id: number;
+    name: string;
+    }
+  ];
+  greeting: string;
+  favoriteFruit: string;
 }
+

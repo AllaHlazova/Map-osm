@@ -1,13 +1,10 @@
-<div style="background-color: yellow">
-  <div style="margin: auto;padding: 20px;height: 300px">
-    <div id="map" style="border: 2px solid red">
-      <div id="popup">
-        <div id="popover-content" class="e2e-inner-html-bound" [innerHTML]="zxczxc | sanitizeHtml">
-<!--          <p class="e2e-inner-html-interpolated">{{zxczxc}}</p>-->
-<!--          <p>Result of binding to innerHTML:</p>-->
-<!--          <p class="e2e-inner-html-bound" [innerHTML]="zxczxc"></p>-->
-        </div>
-      </div>
+<div class="p-3 bg">
+  <div>
+    <h2 class="p-3 text-center">Map of companies</h2>
+  </div>
+  <div id="map" class="m-auto pb-5">
+    <div id="popup">
+      <div id="popover-content" class="p-2 font-weight-bold" [innerHTML]="content | sanitizeHtml"></div>
     </div>
   </div>
 </div>

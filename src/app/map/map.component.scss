@@ -1,13 +1,25 @@
+h2 {
+  color: #4B0082;
+}
 #map {
-  height: 100vh;
-  width: 100vh;
-  //margin: auto;
-  background-color: silver;
-  //padding: 20px;
+  height: 70em;
+  min-width: 60em;
+}
+#popup {
+  max-width: 30em;
 }
 #popover-content {
-  padding: 5px;
   background-color: silver;
-  font-size: 10px;
-  color: floralwhite;
+  font-size: 1.3em;
+  color: #4B0082;
+}
+.bg{
+  background-color: #faebd759;
+}
+::ng-deep .fa-window-close:before {
+  color: #dc3545;
+  font-size: 1.5em;
+}
+::ng-deep .ol-attribution.ol-uncollapsible{
+  height: 2em;
 }
