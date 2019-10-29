@@ -14,6 +14,7 @@ describe('SanitizeHtmlPipe', () => {
       }
     ]
   }));
+
   it('create an instance', () => {
     const pipe = TestBed.get(SanitizeHtmlPipe);
     expect(pipe).toBeTruthy();
