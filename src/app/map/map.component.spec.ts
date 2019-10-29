@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MapComponent } from './map.component';
+import {MapComponent} from './map.component';
+import {SanitizeHtmlPipe} from '../pipes/sanitize-html.pipe';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -8,9 +10,12 @@ describe('MapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MapComponent ]
+      declarations: [
+        MapComponent,
+        SanitizeHtmlPipe],
+      imports: [HttpClientTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
