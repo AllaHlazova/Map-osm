@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app.routing.module';
 import {MapComponent} from './map/map.component';
-import {SanitizeHtmlPipe} from './pipe/sanitizeHtml.pipe';
+import {SanitizeHtmlPipe} from './pipes/sanitize-html.pipe';
 
 @NgModule({
   declarations: [
@@ -15,9 +15,9 @@ import {SanitizeHtmlPipe} from './pipe/sanitizeHtml.pipe';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [SanitizeHtmlPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
