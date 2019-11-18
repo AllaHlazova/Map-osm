@@ -9,7 +9,8 @@ describe('SanitizeHtmlPipe', () => {
       SanitizeHtmlPipe,
       {
         provide: DomSanitizer, useValue: {
-          bypassSecurityTrustHtml() {}
+          bypassSecurityTrustHtml() {
+          }
         }
       }
     ]
